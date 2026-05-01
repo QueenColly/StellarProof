@@ -7,6 +7,8 @@ import {
   getSPVRecord,
   getUserSPVRecords,
   updateSealedStatus,
+  unsealAsset,
+  sealSPV
 } from '../controllers/spv.controller';
 
 const router = Router();
@@ -25,5 +27,11 @@ router.get('/records/user', protect, getUserSPVRecords);
 router.get('/:spvId', protect, getSPVRecord);
 
 router.patch('/records/:id/seal', protect, updateSealedStatus);
+
+/**
+ * POST /api/v1/spv/seal
+ * Creates a Secure Proof Vault (SPV) record that links an Asset to an access control type and a generated KMS key.
+ */
+router.post('/seal', sealSPV);
 
 export default router;

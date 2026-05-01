@@ -8,7 +8,7 @@
  *   its presence when `accessType === 'nft_holders_only'`.
  * - Timestamps are enabled via Mongoose options (adds `createdAt` / `updatedAt`).
  */
-import { Schema, model, Document } from "mongoose";
+import mongoose, { Schema, model, Document } from "mongoose";
 import type { ISPVRecord, AccessType } from "../types/spv.types";
 
 const ACCESS_TYPES: AccessType[] = ["public", "private", "nft_holders_only"];
@@ -63,7 +63,6 @@ const SPVSchema = new Schema<SPVDocument>(
   }
 );
 
-export const SPVModel = model<SPVDocument>("SPVAsset", SPVSchema);
 
 
 
