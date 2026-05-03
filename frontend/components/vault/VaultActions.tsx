@@ -64,10 +64,10 @@ export function VaultActions({ item }: VaultActionsProps) {
       window.URL.revokeObjectURL(url);
       document.body.removeChild(a);
 
-      addToast(`Downloaded ${item.filename}.enc successfully`, "success");
+      addToast({ type: "success", message: `Downloaded ${item.filename}.enc successfully` });
     } catch (error) {
       console.error("Download failed:", error);
-      addToast("Failed to download encrypted file. Please try again.", "error");
+      addToast({ type: "error", message: "Failed to download encrypted file. Please try again." });
     } finally {
       setIsDownloading(false);
       setProgress(0);

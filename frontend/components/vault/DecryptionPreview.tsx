@@ -1,11 +1,9 @@
 "use client";
 
-import React, { useState, useEffect, useCallback } from "react";
-import { Eye, EyeOff, Lock, Loader2, FileText, Image as ImageIcon, Binary, AlertCircle, X } from "lucide-react";
-import { useToast } from "@/context/ToastContext";
+import React, { useState, useCallback } from "react";
+import { Eye, Lock, Loader2, Image as ImageIcon, Binary, AlertCircle, X } from "lucide-react";
 import { Modal } from "../ui/Modal";
 import Button from "../ui/Button";
-import { cn } from "@/utils/cn";
 
 interface VaultItem {
   id: string;
@@ -59,7 +57,6 @@ Status: Verified
 }
 
 export function DecryptionPreview({ item }: DecryptionPreviewProps) {
-  const { addToast } = useToast();
   const [isOpen, setIsOpen] = useState(false);
   const [step, setStep] = useState<"input" | "decrypting" | "preview">("input");
   const [passphrase, setPassphrase] = useState("");

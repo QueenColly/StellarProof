@@ -3,7 +3,6 @@
 import React, { useState, useCallback } from "react";
 import {
   Shield,
-  ExternalLink,
   Copy,
   Check,
   UserCheck,
@@ -12,7 +11,6 @@ import {
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { type OracleProvider } from "../../services/registry";
-import { cn } from "../../utils/cn";
 
 interface ProviderListProps {
   providers: OracleProvider[];

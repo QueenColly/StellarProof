@@ -26,7 +26,6 @@ import { Skeleton } from "../../components/ui/Skeleton";
 import {
   registryService,
   type TeeHash,
-  type OracleProvider,
   type RegistryData,
 } from "../../services/registry";
 import { ProviderList } from "../../components/registry/ProviderList";
