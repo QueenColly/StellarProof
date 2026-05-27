@@ -127,6 +127,8 @@ export class AuthService {
     // rawToken would be sent via email in a production setup
   }
 
+  
+
   async resetPassword(token: string, newPassword: string): Promise<void> {
     if (!token || !newPassword) {
       throw new AppError('Token and new password are required', 400, 'MISSING_DATA');
