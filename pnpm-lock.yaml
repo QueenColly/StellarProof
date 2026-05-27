@@ -103,7 +103,7 @@ importers:
         specifier: ^1.4.12
         version: 1.4.13
       '@types/node':
-        specifier: ^22.7.4
+        specifier: ^22.19.15
         version: 22.19.15
       '@types/node-cron':
         specifier: ^3.0.11
