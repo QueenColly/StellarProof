@@ -10,15 +10,10 @@ class ManifestController {
    */
   public async listManifests(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
-      // req.query is already validated and coerced by the Zod middleware in the router
       const query = req.query as unknown as ListManifestsQuery;
-      
       const result = await manifestService.listManifests(query);
       
-      res.status(StatusCodes.OK).json({
-        success: true,
-        data: result,
-      });
+      res.status(StatusCodes.OK).json({ success: true, data: result });
     } catch (error) {
       next(error);
     }
@@ -44,8 +39,8 @@ class ManifestController {
         return;
       }
 
-      const validatedManifest = manifestService.prepareManifestPayload(manifestPayload, user);
-      const savedManifest = await manifestService.createManifest(validatedManifest);
+      // USE THE SANITIZATION PIPELINE HERE
+      const savedManifest = await manifestService.processManifest(manifestPayload);
 
       res.status(StatusCodes.CREATED).json({
         success: true,
@@ -58,12 +53,17 @@ class ManifestController {
         },
       });
     } catch (error: any) {
-      // Handle MongoDB unique index violations (e.g., exact same manifest submitted twice)
       if (error.code === 11000) {
         res.status(StatusCodes.CONFLICT).json({
           success: false,
           error: 'A manifest with this exact data and hash already exists',
         });
+        return;
+      }
+      
+      // If our validation error throws, send a 400 Bad Request
+      if (error.message && error.message.includes('Validation Error')) {
+        res.status(StatusCodes.BAD_REQUEST).json({ success: false, error: error.message });
         return;
       }
       
