@@ -35,6 +35,12 @@ function makeUser(overrides: Record<string, unknown> = {}) {
   };
 }
 
+// function mockFindOne(result: unknown) {
+//   mockedFindOne.mockReturnValue({
+//     select: () => ({ exec: () => Promise.resolve(result) }),
+//   });
+// }
+
 function mockFindOne(result: unknown) {
   mockedFindOne.mockReturnValue({
     // Handles User.findOne().select().exec() for login

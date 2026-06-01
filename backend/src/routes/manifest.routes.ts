@@ -2,6 +2,7 @@ import { Router } from "express";
 import { z } from "zod";
 import type { Request, Response, NextFunction } from "express";
 import { StatusCodes } from "http-status-codes";
+import { verifyJWT } from '../middlewares/jwt.middleware';
 import { manifestController } from "../controllers/manifest.controller";
 
 const STELLAR_PUBLIC_KEY_REGEX = /^G[A-Z2-7]{55}$/;
